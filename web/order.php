@@ -3,11 +3,14 @@ chdir(dirname(__DIR__));
 require_once('vendor/autoload.php');
 
 use App\AmqpWrapper\SimpleSender;
+use App\model\Order;
 
 try {
-    $theName = filter_input(INPUT_POST, 'theName', FILTER_SANITIZE_STRING);
+    $order = new Order();
+    $order->loadForm();
+
     $sender = new SimpleSender();
-    $sender->execute($theName);
+    $sender->execute($order->toJson());
 
     exit(json_encode([
         'message' => '[x] Message sent.',

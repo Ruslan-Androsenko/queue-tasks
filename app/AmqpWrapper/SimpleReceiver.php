@@ -5,6 +5,7 @@ namespace App\AmqpWrapper;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Message\AMQPMessage;
+use App\model\Order;
 
 
 class SimpleReceiver
@@ -54,6 +55,9 @@ class SimpleReceiver
      * @param $msg AMQPMessage Объект сообщения */
     public function processOrder($msg)
     {
-        echo " [x] Received {$msg->body} \n";
+        $order = new Order();
+        $order->loadQueue($msg->body);
+
+        echo " [x] Received {" . $order->toString() . "} \n";
     }
 }

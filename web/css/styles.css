@@ -34,6 +34,11 @@
     border-color: #122b40;
 }
 
+.form-content select {
+    padding: 8px;
+    margin: 5px;
+}
+
 .response-message {
     display: none;
     margin: 20px 135px 0 0;

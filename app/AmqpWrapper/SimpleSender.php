@@ -30,10 +30,10 @@ class SimpleSender
             false,
             false
         );
-        $msq = new AMQPMessage($message);
+        $msg = new AMQPMessage($message);
 
         $channel->basic_publish(
-            $msq,
+            $msg,
             '',
             Helper::QUEUE_NAME
         );
